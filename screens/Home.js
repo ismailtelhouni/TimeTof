@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
+import { LineChart } from 'react-native-chart-kit';
+
 
 import { Card } from '../components';
 import articles from '../constants/articles';
@@ -13,13 +15,41 @@ class Home extends React.Component {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}>
         <Block flex>
-          <Card item={articles[0]} horizontal  />
-          <Block flex row>
-            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Card item={articles[2]} />
-          </Block>
-          <Card item={articles[3]} horizontal />
-          <Card item={articles[4]} full />
+          <LineChart
+            data={{
+              labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+              datasets: [
+                {
+                  data: [20, 45, 28, 80, 99, 43],
+                },
+              ],
+            }}
+            width={Dimensions.get('window').width} // width de l'écran
+            height={220}
+            yAxisSuffix="k"
+            yAxisInterval={1} // intervalle de l'axe y
+            chartConfig={{
+              backgroundColor: '#e26a00',
+              backgroundGradientFrom: '#fb8c00',
+              backgroundGradientTo: '#ffa726',
+              decimalPlaces: 2, // nombre de décimales sur l'axe y
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              style: {
+                borderRadius: 16,
+              },
+              propsForDots: {
+                r: '6',
+                strokeWidth: '2',
+                stroke: '#ffa726',
+              },
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
         </Block>
       </ScrollView>
     )

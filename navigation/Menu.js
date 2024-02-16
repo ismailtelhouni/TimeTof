@@ -19,10 +19,7 @@ function CustomDrawerContent({
       style={styles.container}
       forceInset={{ top: "always", horizontal: "never" }}
     >
-      <Block flex={0.06} style={styles.header}>
-        <Image styles={styles.logo} source={Images.Logo} />
-      </Block>
-      <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
+      <Block flex style={{ marginTop:10 ,paddingLeft: 8, paddingRight: 14 }}>
         <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           {screens.map((item, index) => {
             return (
